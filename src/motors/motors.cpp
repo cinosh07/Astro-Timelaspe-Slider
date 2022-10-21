@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include "Motors.h"
 #include "configuration.h"
-int _sliderDirection = 1;
-int _oldSliderDirection = 0;
+int _sliderDirection = 0;
+int _oldSliderDirection = 1;
 int _speed = 0;
 int _decimals = 0;
 boolean _isRunning = false;

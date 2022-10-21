@@ -14,7 +14,7 @@
 #include <Fonts/FreeMonoBold24pt7b.h> // Hardware-specific library
 #include <BfButton.h>
 // #include <SPI.h>
-// #include <SdFat.h>  
+// #include <SdFat.h>
 #include <control_knob/Knob.h>
 #include <display/Display.h>
 #include <motors/Motors.h>
@@ -33,7 +33,6 @@ int counter = 0;
 
 int currentDir = 0;
 
-
 // #if SPI_DRIVER_SELECT != 2
 // // #error edit SdFatConfig.h .  READ THE SKETCH INSTRUCTIONS
 // #endif
@@ -41,7 +40,6 @@ int currentDir = 0;
 // SoftSpiDriver<12, 11, 13> softSpi; //Bit-Bang on the Shield pins SDFat.h v2
 // SdFat SD;
 // #define SD_CS SdSpiConfig(10, DEDICATED_SPI, SD_SCK_MHZ(0), &softSpi)
-
 
 void callback()
 {
@@ -167,17 +165,14 @@ void setup()
   Timer1.attachInterrupt(callback); // attaches callback() as a timer overflow interrupt
   Timer1.stop();
   display.SDbegin();
- 
+
   // SD.begin(SD_CS)
 
-
-
   // if (!SD.begin(SD_CS)) {
- 
+
   //   Serial.println("Failed to init SD Card");
   // }
   display.showSplashScreen();
-  
 
   display.updateLCDTime(true);
   display.updateLCDStatus();
@@ -258,17 +253,26 @@ void loop()
     Serial.print("p.y < 512: ");
     Serial.println(p.y < 512);
 #endif
-    
+
     if (p.x > 600)
     {
-        Motors::setSliderDirection(!Motors::getOldSdir());
-    }
 
-    if (Motors::getSliderDirection() != Motors::getOldSdir())
-    {
-      display.updateLCDStatus();
+      // if (p.y < 512)
+      // {
+      //   Motors::setSliderDirection(0);
+      //   Serial.print("right");
+      // }
+      // else
+      // {
+        Motors::setSliderDirection(!Motors::getSliderDirection());
+        // Serial.print("left");
+      // }
+      // if (Motors::getSliderDirection() != Motors::getOldSdir())
+      // {
+        display.updateLCDStatus();
+      // }
+      digitalWrite(DIR, Motors::getSliderDirection());
     }
-    digitalWrite(DIR, Motors::getSliderDirection());
   }
 
   if ((long)(millis() - nextBattMillis) >= 0)

@@ -410,6 +410,27 @@ void Display::updateLCDStatus()
     if (!Motors::getSliderDirection())
     {
 
+
+
+tft.fillTriangle(
+          0, 200,  // peak
+          0, 320,  // bottom left
+          200, 320, // bottom right
+          BLACK);
+
+      tft.fillTriangle(
+          480, 200, // peak
+          280, 320, // bottom left
+          480, 320, // bottom right
+          tft.color565(255, 0, 50));
+      
+#ifdef DEBUG
+      Serial.println("Right bracket is red ....");
+#endif
+    }
+
+    else
+    {
       tft.fillTriangle(
           480, 200, // peak
           280, 320, // bottom left
@@ -423,24 +444,6 @@ void Display::updateLCDStatus()
           tft.color565(255, 0, 50));
 #ifdef DEBUG
       Serial.println("Left bracket is red ....");
-#endif
-    }
-
-    else
-    {
-      tft.fillTriangle(
-          0, 200,  // peak
-          0, 320,  // bottom left
-          200, 320, // bottom right
-          BLACK);
-
-      tft.fillTriangle(
-          480, 200, // peak
-          280, 320, // bottom left
-          480, 320, // bottom right
-          tft.color565(255, 0, 50));
-#ifdef DEBUG
-      Serial.println("Right bracket is red ....");
 #endif
     }
 
