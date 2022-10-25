@@ -1,5 +1,71 @@
 // #define DEBUG
 
+
+#define CAPTION "Pro-Timer 0.92";
+
+//Define if LRTimelapse Pro is on original display or not 
+// #define LRTimelapse_legacy - TODO
+
+//Define if the firmware is used for LRTimelapse Pro TImer Free only. (Without Slider)
+// #define LRTimelapse_Only - TODO
+
+
+// #define MODE_M 0;
+// #define MODE_BULB 1;
+#define shooting 1
+#define notshooting 0
+
+#define cMinInterval 0.2
+#define cMaxInterval 999 // no intervals longer as 999secs - those would scramble the display
+
+// #define keySampleRate 100;      // ms between checking keypad for key
+
+// /* K.H: "Added KeyRepeatRateAcceleration" to   customize dynamic behavior */
+// #define keyRepeatRateHighDelay 500;      // delay for speeding up
+// #define keyRepeatRateStep 60;      // speeding up steps
+// #define keyRepeatRateSlow 500;      // SLOW speed when held, key repeats 1000 / keyRepeatRate times per second
+// #define keyRepeatRateHigh 100;      // HIGH speed when held, key repeats 1000 / keyRepeatRate times per second
+
+
+
+//LRTMenu Constant
+#define SCR_INTERVAL 0			// menu workflow constants
+#define SCR_SHOTS 1
+#define SCR_MODE 9
+#define SCR_EXPOSURE 10
+#define SCR_RUNNING 2
+#define SCR_CONFIRM_END 3
+#define SCR_CONFIRM_END_BULB 12
+#define SCR_SETTINGS 4
+#define SCR_PAUSE 5
+#define SCR_RAMP_TIME 6
+#define SCR_RAMP_TO 7
+#define SCR_DONE 8
+
+// LRT constants
+#define NONE 0
+#define SELECT 1
+#define LEFT 2
+#define UP 3
+#define DOWN 4
+#define RIGHT 5
+
+//LRT Display Constants
+#define Onboard_LED 40
+#define BACK_LIGHT 41
+
+#define RELEASE_TIME_DEFAULT 0.1 // default shutter release time for camera
+#define MIN_DARK_TIME 0.5
+
+#define keyRepeatRate 100 // when held, key repeats 1000 / keyRepeatRate times per second
+
+#define decoupleTime 1000 // time in milliseconds to wait before doing a single bulb exposure
+// K.H. LCD dimming
+#define cMinLevel 0 // Min. Background Brightness Levels
+#define cMaxLevel 5 // Max. Background Brightness Levels
+// left side MENUS
+#define SCR_SINGLE 11
+
 // These are the pins for the shield!
 #define YP A1 // must be an analog pin, use "An" notation!
 #define XM A2 // must be an analog pin, use "An" notation!

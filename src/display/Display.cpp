@@ -96,7 +96,10 @@ void Display::showSplashScreen()
   uint8_t ret;
   uint32_t start;
 
-  if (f != NULL)
+//TODO Tester ce changement en enlevant la carte SD et faire un reset
+// https://stackoverflow.com/questions/6040382/how-to-get-rid-of-warning-converting-to-non-pointer-type-char-from-null
+  // if (f != NULL)
+   if (f != 0)
   {
 #ifdef USE_SDFAT
     f.getName(nm, 32 - pathlen);
@@ -149,9 +152,11 @@ void Display::showSplashScreen()
   tft.setCursor(140, 230);
   tft.setTextColor(RED);
   tft.print("Initialization ...");
-  tft.setCursor(25, 290);
-  tft.setTextColor(WHITE);
+  tft.setCursor(25, 265);
   tft.setFont(&FreeSans9pt7b);
+  tft.setTextColor(WHITE);
+  tft.print("LRTimelapse Pro Timer Free - by LRTimelapse");
+  tft.setCursor(25, 290);
   tft.print("Version 0.1 - by Carl Tremblay - Copyright 2022");
 
   delay(5000);

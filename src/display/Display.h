@@ -24,7 +24,7 @@ public:
     float mapFloat(float x, float in_min, float in_max, float out_min, float out_max);
     void showSplashScreen();
     void setAddrWindow(int x, int y, int width, int height);
-    uint8_t Display::showBMP(char *nm, int x, int y);
+    uint8_t showBMP(char *nm, int x, int y);
     void SDbegin();
 
 private:

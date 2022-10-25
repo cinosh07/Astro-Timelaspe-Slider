@@ -13,12 +13,11 @@
 #include <Fonts/FreeMonoBold18pt7b.h> // Hardware-specific library
 #include <Fonts/FreeMonoBold24pt7b.h> // Hardware-specific library
 #include <BfButton.h>
-// #include <SPI.h>
-// #include <SdFat.h>
 #include <control_knob/Knob.h>
 #include <display/Display.h>
 #include <motors/Motors.h>
 #include <clock/Clock.h>
+#include <LRTimelapse/LRTimelapse.h>
 
 Display display;
 
@@ -131,10 +130,11 @@ void pressHandler(BfButton *btn, BfButton::press_pattern_t pattern)
     break;
   }
 }
+
 void setup()
 {
 
-  pinMode(SHUTTERPIN, LOW);
+  pinMode(SHUTTERPIN, OUTPUT);
   pinMode(STEP, OUTPUT);
   pinMode(DIR, OUTPUT);
   // Button settings
@@ -164,6 +164,9 @@ void setup()
   //  Timer1.pwm(9, 512);                // setup pwm on pin 9, 50% duty cycle
   Timer1.attachInterrupt(callback); // attaches callback() as a timer overflow interrupt
   Timer1.stop();
+
+  LRTimelapse::setup();
+
   display.SDbegin();
 
   // SD.begin(SD_CS)
@@ -257,20 +260,8 @@ void loop()
     if (p.x > 600)
     {
 
-      // if (p.y < 512)
-      // {
-      //   Motors::setSliderDirection(0);
-      //   Serial.print("right");
-      // }
-      // else
-      // {
-        Motors::setSliderDirection(!Motors::getSliderDirection());
-        // Serial.print("left");
-      // }
-      // if (Motors::getSliderDirection() != Motors::getOldSdir())
-      // {
-        display.updateLCDStatus();
-      // }
+      Motors::setSliderDirection(!Motors::getSliderDirection());
+      display.updateLCDStatus();
       digitalWrite(DIR, Motors::getSliderDirection());
     }
   }
