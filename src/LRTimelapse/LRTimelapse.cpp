@@ -11,9 +11,6 @@ namespace LRTimelapse
 
     void setup()
     {
-        //*****************************************
-        //  Setup LRTimelapse Intervalometer Part
-        //*****************************************
         pinMode(Onboard_LED, OUTPUT);
         digitalWrite(Onboard_LED, LOW); // Turn Onboard LED OFF. it only consumes battery power ;-)
 
@@ -42,10 +39,6 @@ namespace LRTimelapse
         TCCR1B |= (1 << CS12);  // 256 Prescale
         TIMSK1 |= (1 << TOIE1); // activate Timer Overflow Interrupt n
         interrupts();
-
-        //**************************************************
-        //  End of Setup LRTimelapse Intervalometer Part
-        //**************************************************
     }
 
     /**
